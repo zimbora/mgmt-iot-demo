@@ -1,0 +1,222 @@
+<!--
+
+=========================================================
+* Now UI Dashboard PRO - v1.5.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/now-ui-dashboard-pro
+* Copyright 2019 Creative Tim (http://www.creative-tim.com)
+
+* Designed by www.invisionapp.com Coded by www.creative-tim.com
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Now UI Dashboard PRO by Creative Tim
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <!-- CSS Files -->
+  <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="../assets/demo/demo.css" rel="stylesheet" />
+
+</head>
+
+<style type="text/css">
+  /*
+  #customBtn {
+    display: inline-block;
+    background: white;
+    color: #444;
+    width: 190px;
+    border-radius: 5px;
+    border: thin solid #888;
+    box-shadow: 1px 1px 1px grey;
+    white-space: nowrap;
+  }
+  #customBtn:hover {
+    cursor: pointer;
+  }
+  span.label {
+    font-family: serif;
+    font-weight: normal;
+  }
+  span.icon {
+    background: url('/assets/img/g-normal.png') transparent 5px 50% no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    width: 42px;
+    height: 42px;
+  }
+  span.buttonText {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 42px;
+    padding-right: 42px;
+    font-size: 14px;
+    font-weight: bold;
+    /* Use the Roboto font that is loaded in the <head> */
+    font-family: 'Roboto', sans-serif;
+  }
+  */
+</style>
+
+<body class="login-page sidebar-mini ">
+
+  <div class="wrapper wrapper-full-page ">
+    <div class="full-page login-page section-image" filter-color="black" data-image="../assets/img/MoWyJ4.jpg">
+      <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+      <div class="content">
+        <div class="container">
+          <div class="col-md-4 ml-auto mr-auto">
+            <form class="form" method="" action="">
+              <div class="card card-login card-plain">
+                <div class="card-header ">
+                  <div class="typography-line">
+                    <h1 style="color:white">Inloc</h1>
+                  </div>
+                  <div class="logo-container">
+                    <!--<img src="../../assets/img/now-logo.png" alt="">-->
+                  </div>
+                </div>
+                <div class="card-body ">
+                  <div class="input-group no-border form-control-lg">
+                    <span class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="now-ui-icons users_circle-08"></i>
+                      </div>
+                    </span>
+                    <input id="user" type="text" class="form-control" placeholder="user...">
+                  </div>
+                  <div class="input-group no-border form-control-lg">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="now-ui-icons objects_key-25"></i>
+                      </div>
+                    </div>
+                    <input id="password" class="form-control" placeholder="password.." type="password" required="true" />
+                  </div>
+                </div>
+                <div class="typography-line">
+                  <h7 id="login-msg" style="color:blue"></h7>
+                </div>
+                <div class="card-footer ">
+                  <a id="submit" class="btn btn-primary btn-round btn-lg btn-block mb-3">Log in</a>
+                </div>
+
+                <div class="typography-line">
+                  <h7 style="color:white">or login with google account</h7>
+                </div>
+
+                <div class="card-footer ">
+                  <!--<div id="customBtn" class="customGPlusSignIn">-->
+                    <!--<a id="signin" class="btn btn-outline-dark btn-round btn-lg btn-block mb-3">-->
+                    <a id="signin" class="btn btn-default btn-round btn-lg btn-block mb-3">
+                      <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                      Sign In/Authorize
+                    </a>
+                  <!--</div>-->
+                </div>
+                  <!--<a id="signin" class="btn btn-primary btn-round btn-lg btn-block mb-3">Log in</a>-->
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <footer class="footer">
+        <div class=" container-fluid ">
+          <div class="copyright" id="copyright">
+            &copy; <script>
+              document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+            </script>, All rights reserved to <a href="https://www.inloc.cloud" target="_blank">Inloc</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!--   Core JS Files   -->
+  <script src="../assets/js/core/jquery.min.js"></script>
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+
+  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+  <script src="../assets/demo/demo.js"></script>
+  <script src="../assets/js/gauth_flow.js"></script>
+
+  <script async defer src="https://apis.google.com/js/api.js"
+          onload="this.onload=function(){};gflow.handleClientLoad()"
+          onreadystatechange="if (this.readyState === 'complete') this.onload()">
+  </script>
+
+  <script>
+    $(document).ready(function() {
+
+      demo.checkFullPageBackgroundImage();
+
+      $("#submit").on("click",function(e){
+        let user=$("#user").val();
+        let pass=$("#password").val();
+        //$.post("http://"+window.location.hostname+":"+window.location.port+"/login",{user: user,password: pass}, function(data){
+        $.post(window.location.protocol+"//"+window.location.hostname+"/login",{user: user,password: pass}, function(data){
+          if(data.message!='Success'){
+            $("#login-msg").text("Wrong credentials");
+          }else{
+            location.href = location.href
+          }
+        });
+      });
+    });
+
+
+    function credentials(msg){
+      try{
+        let data = JSON.parse(msg)
+        //console.log("called from Android: ",data);
+        //console.log("send credentials to server");
+
+        $.post(window.location.protocol+"//"+window.location.hostname+"/login/google/user",{token: data.access_token}, function(data){
+          if(data.message!='Success'){
+            console.log(data)
+          }else{
+            if(location.href.includes("gauth") || location.href.includes("login"))
+              location.href = window.location.protocol+"//"+window.location.hostname;
+            else
+              location.href = location.href
+          }
+        });
+
+        /*
+        if(data.hasOwnProperty("mac")){
+          ws_class.set_mac(data.mac);
+          connect();
+        }
+        */
+      }catch(e){
+        console.log("Not JSON: ",e)
+      }
+      return "nice call";
+    }
+
+  </script>
+
+
+</body>
+
+</html>
