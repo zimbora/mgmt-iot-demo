@@ -25,7 +25,7 @@
           <%- include('../partials/sidebar.ejs') %>
           <div class="col py-3">
             <div class="row">
-              <div class="col-sm-8 mb-3 mb-sm-0">
+              <div class="col-sm-6 mb-3 mb-sm-0">
                 <div class="content-header">
                   <h5>MQTT Clients</h5>
                 </div>
@@ -44,7 +44,7 @@
                   </table>
                 </div>
               </div>
-              <div class="col-sm-4 mb-2 mb-sm-0">
+              <div class="col-sm-6 mb-2 mb-sm-0">
                 <div class="card">
                   <div class="card-header">
                     <p>Add new client</p>
@@ -69,6 +69,10 @@
                       </select>
                     </div>
                     <button id="submit" type="button" class="btn btn-primary btn-sm">submit</button>
+                    <br>
+                    <br>
+                    <div id="privelleges">
+                    </div>
                   </div>
                 </div>
               </div>
@@ -85,9 +89,25 @@
   <%- include('../partials/modal/confirmation.ejs') %>
   <%- include('../partials/modal/error.ejs') %>
 
+  <script src="lib/markdown.js"></script>
+
   <script>
     var t;
     var id;
+
+    privelleges.innerHTML = markdown.toHTML(
+    `#### Clients Privelleges:
+
+    Only clients listed on this section are available to access mqtt broker.
+    Create a client and associate it to a user.
+    Clients permissions will be given by associated user type.
+    Those permissions are then used by mqtt broker to manage privelleges on subscribe and publish topics.
+
+    However, it is possible to give permission to a client to manage one or more devices, clicking on it's id in this table
+
+    These clients accounts are also used to login on this platform.
+    So the defined password on new client creation will be used to login on this platform.
+    `);
 
     $(document).ready(function () {
       t = $('#clients').DataTable();

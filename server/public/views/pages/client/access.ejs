@@ -20,11 +20,11 @@
           <%- include('../../partials/client/sidebar.ejs') %>
           <div class="col py-3">
             <div class="row">
-              <div class="col-sm-8 mb-3 mb-sm-0">
+              <div class="col-sm-6 mb-3 mb-sm-0">
                 <div class="content-header">
                   <h5>Devices with access</h5>
                 </div>
-                <div class="card">
+                <div class="card" style="overflow: scroll;">
                   <!--<h5 class="card-title">Special title treatment</h5>-->
                   <table id="devices" class="display" style="width:100%">
                     <thead>
@@ -40,7 +40,7 @@
                   </table>
                 </div>
               </div>
-              <div class="col-sm-4 mb-2 mb-sm-0">
+              <div class="col-sm-6 mb-2 mb-sm-0">
                 <div class="card">
                   <div class="card-header">
                     <p>Associate Device</p>
@@ -61,6 +61,10 @@
                       </select>
                     </div>
                     <button id="submit" type="button" class="btn btn-primary btn-sm">submit</button>
+                    <br>
+                    <br>
+                    <div id="privelleges">
+                    </div>
                   </div>
                 </div>
               </div>
@@ -77,10 +81,25 @@
   <%- include('../../partials/modal/confirmation.ejs') %>
   <%- include('../../partials/modal/error.ejs') %>
 
+  <script src="lib/markdown.js"></script>
+
   <script>
     var t;
     var clientID = "";
     var device;
+
+    privelleges.innerHTML = markdown.toHTML(
+    `#### Clients Privelleges
+
+    Use this tab to associate a device to a client and set it's permission
+
+    If read is selected, client can only subscribe on the device topic
+    If write is selected, client can only publish on the device topic
+    if read/write is selected, client can subscribe and publish on the device.
+
+    Only clients with read/write permission can use this platform to manage the device
+
+    `);
 
     $(document).ready(()=>{
       clientID = api.getClientID();

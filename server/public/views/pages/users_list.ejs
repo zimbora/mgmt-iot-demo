@@ -23,7 +23,7 @@
           <%- include('../partials/sidebar.ejs') %>
           <div class="col py-3">
             <div class="row">
-              <div class="col-sm-8 mb-3 mb-sm-0">
+              <div class="col-sm-6 mb-3 mb-sm-0">
                 <div class="content-header">
                   <h5>MQTT Users</h5>
                 </div>
@@ -41,12 +41,12 @@
                   </table>
                 </div>
               </div>
-              <div class="col-sm-4 mb-2 mb-sm-0">
+              <div class="col-sm-6 mb-2 mb-sm-0">
                 <div class="card">
                   <div class="card-header">
                     <p>Add new User</p>
                   </div>
-                  <div class="card-body">
+                  <div class="card-body style="overflow:scroll"">
                     <div class="input-group mb-3">
                       <span class="input-group-text" >user</span>
                       <input type="text" id="userID" class="form-control" placeholder="mqtt user" aria-label="Username" aria-describedby="basic-addon1">
@@ -67,6 +67,12 @@
                       </select>
                     </div>
                     <button id="submit" type="button" class="btn btn-primary btn-sm">submit</button>
+                    <br>
+                    <br>
+                    <div id="privelleges">
+                    </div>
+                    <div id="mqtt_users_table">
+                    </div>
                   </div>
                 </div>
               </div>
@@ -80,9 +86,50 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.14.0/ace.js" integrity="sha512-WYlXqL7GPpZL2ImDErTX0RMKy5hR17vGW5yY04p9Z+YhYFJcUUFRT31N29euNB4sLNNf/s0XQXZfzg3uKSoOdA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js" integrity="sha512-42PE0rd+wZ2hNXftlM78BSehIGzezNeQuzihiBCvUEB3CVxHvsShF86wBWwQORNxNINlBPuq7rG4WWhNiTVHFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+  <script src="lib/markdown.js"></script>
+
   <script>
     var t;
     var id;
+
+    privelleges.innerHTML = markdown.toHTML(
+    `#### Users Privelleges:
+
+    Users listed on this section are the only ones available to access mqtt broker.
+    In clients section, mqtt clients can be created and associated to the respective user type
+    Clients are used by mqtt broker to manage privelleges on subscribe and publish topics.
+    Besides that, this platform is also managed by mqtt clients accounts.
+    So, to manage clients and users privelleges you need an account (mqtt client, associated to a user type with all privelleges).
+    mqtt client account can be created on Clients section.
+
+    Check below tables to choose users type level on its creation.`);
+
+
+    mqtt_users_table.innerHTML = markdown.toHTML(`
+##### Platform permissions
+    |       |      users      |              clients              |     devices     |
+    | level | create | delete | create | delete | associate device| list   | edit   |
+    | ----- | :----: | -----: | -----: | -----: | --------------: | -----: | -----: |
+    |   5   |    x   |    x   |    x   |    x   |    x   |    x   |   x    |    x   |
+    |   4   |    x   |        |    x   |    x   |    x   |    x   |   x    |    x   |
+    |   3   |        |        |        |        |        |        |   x    |        |
+    |   2   |        |        |        |        |        |        |        |        |
+    |   1   |        |        |        |        |        |        |        |        |
+
+##### MQTT permissions
+    |       |  subscribe |  publish   |
+    | level | all topics | all topics |
+    | ----- | ---------- | ---------- |
+    |   5   |      x     |      x     |
+    |   4   |      x     |      x     |
+    |   3   |      x     |            |
+    |   2   |            |            |
+    |   1   |            |            |
+
+    Devices also need an user account to connect to the mqtt broker. However, they do not need to have an mqtt client registered.
+    They always have access to own topic
+    `);
+
 
     $(document).ready(function () {
       t = $('#users').DataTable();

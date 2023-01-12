@@ -21,6 +21,7 @@ router.route("/permission",Client.checkAdminAccess)
 
 router.use('/:device_id',Client.checkDeviceAccess,(req,res,next)=>{next()});
 
+// protected zone
 router.route("/:device_id/clients")
 
   .get(Device.getClientsWithAccess)
