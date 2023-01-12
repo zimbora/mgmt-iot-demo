@@ -1,16 +1,41 @@
 var mysql = require('mysql2');
 var db = require('../controllers/db');
+var CryptoJS = require("crypto-js");
 
 module.exports =  {
 
-  add : (clientid,user,cb)=>{
+  get : (id,pwd,cb)=>{
+    // get id associated to token
+    db.getConnection((err,conn) => {
+      if(err) cb(err,null)
+      else{
+        var query = `select users.level,users.idusers from ?? inner join users where clients.idclients = ? and clients.token = ? and users.idusers = clients.idclients`;
+        var table = ["clients",id,pwd];
+        query = mysql.format(query,table);
+        conn.query(query,function(err,rows){
+          db.close_db_connection(conn);
+          if(err) cb(err,null);
+          else if(rows.length > 0) cb(null,rows[0]);
+          else cb(null,null);
+        });
+      }
+    });
+  },
+
+  add : (clientid,user,password,cb)=>{
 
     db.getConnection((err,conn) => {
       if(err)
         cb(err,null)
       else{
-        let query = "INSERT INTO ?? (??,??) VALUES (?,?)";
-        let table = ["clients","idclients","users_idusers",clientid,user];
+        var SHA256 = require("crypto-js/sha256");
+        //let api_token = CryptoJS.AES.encrypt('my top secret', 'secret key ultrasecret').toString();
+        let message = clientid+"\º~"+password;
+        let key = String(Date.now()/3621)
+        var api_token = CryptoJS.HmacSHA256(message, key).toString();
+
+        let query = "INSERT INTO ?? (??,??,??,??) VALUES (?,?,?,?)";
+        let table = ["clients","idclients","users_idusers","token","api_token",clientid,user,password,api_token];
         query = mysql.format(query,table);
         conn.query(query,function(err,rows){
           if(err) console.log(err)
@@ -56,8 +81,8 @@ module.exports =  {
       if(err)
         cb(err,null)
       else{
-        let query = "UPDATE ?? set ?? = ? where ?? = ?";
-        let table = ["clients","users_idusers",user,"idclients",clientid];
+        let query = "UPDATE ?? set ?? = ?, ?? = ? where ?? = ?";
+        let table = ["clients","users_idusers",user,"token",password,"idclients",clientid];
         query = mysql.format(query,table);
         conn.query(query,function(err,rows){
           db.close_db_connection(conn);
@@ -73,7 +98,7 @@ module.exports =  {
       if(err)
         cb(err,null)
       else{
-        var query = `select * from clients inner join users where users.idusers = clients.users_idusers`;
+        var query = `select idclients,timestamp,users_idusers,token,api_token from clients inner join users where users.idusers = clients.users_idusers`;
         var table = [];
         query = mysql.format(query,table);
         conn.query(query,function(err,rows){
@@ -156,4 +181,27 @@ module.exports =  {
       }
     });
   },
+
+  checkDeviceAccess : (clientid,level,deviceid,cb)=>{
+
+    if(level >= 4)
+      return cb(null,true);
+    else{
+      db.getConnection((err,conn) => {
+        if(err)
+          cb(err,null)
+        else{
+          var query = `select * from ?? where ?? = ? and ?? = ?`;
+          var table = ["permissions","clients_idclients",clientid,"devices_uid",deviceid];
+          query = mysql.format(query,table);
+          conn.query(query,function(err,rows){
+            db.close_db_connection(conn);
+            if(err) cb(err,false);
+            else if(rows.length > 0) cb(null,true);
+            else cb(null,false);
+          });
+        }
+      });
+    }
+  }
 };

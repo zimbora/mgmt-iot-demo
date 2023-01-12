@@ -5,8 +5,7 @@ var Client = require('../controllers/clients')
 
 const router = express.Router();
 
-router.use((req,res,next) => {
-  log.debug("clients route");
+router.use("/:client_id",Client.checkAdminAccess,(req,res,next) => {
   next();
 });
 

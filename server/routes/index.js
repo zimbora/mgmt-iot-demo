@@ -38,13 +38,16 @@ router.get('/api-status', (req, res) =>
 //router.use('/user', User.checkUserOwnAccess,users);
 router.use('/user', users);
 
-router.route('/users')
+router.route('/users',Client.checkAdminAccess)
   .get(User.list)
   .post(User.add)
   .delete(User.delete)
   .put(User.update)
 
 router.use('/client', clients);
+
+router.use('/clients',Client.checkAdminAccess,(req,res,next)=>{next()})
+
 router.route('/clients')
   .get(Client.list)
   .post(Client.add)

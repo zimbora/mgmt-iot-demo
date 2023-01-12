@@ -2,6 +2,7 @@ var jwt = require('jsonwebtoken');
 
 var config = require('../../config/env');
 var User = require('../models/users');
+var Client = require('../models/clients');
 var Auth = require('../models/auth');
 
 function check_authentication(req, res, next) {
@@ -9,8 +10,8 @@ function check_authentication(req, res, next) {
   Auth.check_authentication(req.session.token,(authenticated,user)=>{
     if(authenticated) {
       req.user = user;
-      next()
-    }else next();
+    }
+    next()
   });
 }
 
@@ -27,11 +28,12 @@ function authenticate_email(req, res, next) {
 }
 
 function authenticate(req, res, next) {
-  User.findUserByNick(req.body.user,req.body.password,(err,result)=>{
+  Client.get(req.body.user,req.body.password,(err,result)=>{
     if(err) res.json({message:"Failure"});
     else if(result == null) res.json({message:"User and password doesn't match"});
     else{
       req.user = result;
+      console.log("user",req.user)
       next();
     }
   });
@@ -46,7 +48,8 @@ function generateToken(req, res, next) {
   if (!req.user) return next();
 
   const jwtPayload = {
-    id: req.user.id
+    id: req.user.idusers,
+    level: req.user.level
   };
   const jwtData = {
     expiresIn: config.jwtDuration,
@@ -55,7 +58,7 @@ function generateToken(req, res, next) {
 
   req.session.token = jwt.sign(jwtPayload, secret, jwtData);
 
-  User.updateWsToken(req.user.id,req.session.token.substr(req.session.token.length-20,req.session.token.length),(error,res)=>{log.debug(error,res)});
+  //User.updateWsToken(req.user.id,req.session.token.substr(req.session.token.length-20,req.session.token.length),(error,res)=>{log.debug(error,res)});
 
   next();
 }

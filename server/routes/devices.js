@@ -2,6 +2,7 @@ var express = require('express');
 var config = require('../../config/env');
 
 var Device = require('../controllers/devices')
+var Client = require('../controllers/clients')
 
 const router = express.Router();
 
@@ -10,13 +11,15 @@ router.use((req,res,next) => {
   next();
 });
 
-router.route("/permission")
+router.route("/permission",Client.checkAdminAccess)
   /** POST /api/device/permission **/
   .post(Device.addClientPermission)
   /** DELETE /api/device/permission **/
   .delete(Device.deleteClientPermission)
   /** PUT /api/device/permission **/
   .put(Device.updateClientPermission)
+
+router.use('/:device_id',Client.checkDeviceAccess,(req,res,next)=>{next()});
 
 router.route("/:device_id/clients")
 

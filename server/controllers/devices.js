@@ -62,10 +62,17 @@ module.exports = {
  },
 
   list : (req, res, next)=>{
-    device.list((err,rows)=>{
-      if(!err) response.send(res,rows);
-      else response.error(res,httpStatus.INTERNAL_SERVER_ERROR,err);
-    });
+    if(req.user.level >= 4){
+      device.list((err,rows)=>{
+        if(!err) response.send(res,rows);
+        else response.error(res,httpStatus.INTERNAL_SERVER_ERROR,err);
+      });
+    }else{
+      device.listAssociated(req.user.id, (err,rows)=>{
+        if(!err) response.send(res,rows);
+        else response.error(res,httpStatus.INTERNAL_SERVER_ERROR,err);
+      });
+    }
   },
 
   // get device info

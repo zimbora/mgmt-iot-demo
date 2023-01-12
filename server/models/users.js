@@ -10,7 +10,7 @@ module.exports = {
         cb(err,null)
       else{
         let query = "INSERT INTO ?? (??,??,??) VALUES (?,?,?)";
-        let table = ["users","idusers","token","level",user,pwd,level];
+        let table = ["users","idusers","password","level",user,pwd,level];
         query = mysql.format(query,table);
         conn.query(query,function(err,rows){
           if(err) console.log(err)
@@ -50,14 +50,14 @@ module.exports = {
     });
   },
 
-  update : (user,token,level,cb)=>{
+  update : (user,pwd,level,cb)=>{
 
     db.getConnection((err,conn) => {
       if(err)
         cb(err,null)
       else{
         let query = "UPDATE ?? set ?? = ?, ??=? where ?? = ?";
-        let table = ["users","token",token,"level",level,"idusers",user];
+        let table = ["users","password",pwd,"level",level,"idusers",user];
         query = mysql.format(query,table);
         conn.query(query,function(err,rows){
           db.close_db_connection(conn);
@@ -104,6 +104,9 @@ module.exports = {
   },
 
   findUserByToken : (token,cb)=>{
+
+    // move it to clients.js
+
     // get id associated to token
     db.getConnection((err,conn) => {
       if(err)
@@ -122,31 +125,13 @@ module.exports = {
     });
   },
 
-  findUserByNick : (nick,pwd,cb)=>{
+  findUser : (nick,pwd,cb)=>{
     // get id associated to token
     db.getConnection((err,conn) => {
       if(err) cb(err,null)
       else{
         var query = `select * from ?? where ?? = ? and ?? = ?`;
-        var table = ["users","nick",nick,"password",pwd];
-        query = mysql.format(query,table);
-        conn.query(query,function(err,rows){
-          db.close_db_connection(conn);
-          if(err) cb(err,null);
-          else if(rows.length > 0) cb(null,rows[0]);
-          else cb(null,null);
-        });
-      }
-    });
-  },
-
-  findUserByEmail : (email,pwd,cb)=>{
-    // get id associated to token
-    db.getConnection((err,conn) => {
-      if(err) cb(err,null)
-      else{
-        var query = `select * from ?? where ?? = ? and ?? = ?`;
-        var table = ["users","email",email,"password",pwd];
+        var table = ["users","idusers",nick,"password",pwd];
         query = mysql.format(query,table);
         conn.query(query,function(err,rows){
           db.close_db_connection(conn);

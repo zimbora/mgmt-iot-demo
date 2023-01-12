@@ -21,6 +21,7 @@
                     <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
                 </a>
             </li>
+            <% if(user.level >= 4){%>
             <li>
                 <a href="../../users"
                 <% if(page == "Users"){%>
@@ -29,10 +30,13 @@
                 class="nav-link px-0 align-middle">
                     <i class="fs-4 bi-person-lines-fill"></i> <span class="ms-1 d-none d-sm-inline">Users</span></a>
             </li>
+            <% } %>
+            <% if(user.level >= 4){%>
             <li>
                 <a href="../../clients" class="nav-link px-0 align-middle">
                     <i class="fs-4 bi-person-lines-fill"></i> <span class="ms-1 d-none d-sm-inline">Clients</span></a>
             </li>
+            <% } %>
             <li>
                 <!--<a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">-->
                 <a href="../../devices" class="nav-link px-0 align-middle">
@@ -104,5 +108,14 @@
             -->
         </ul>
         <hr>
+        <div class="dropdown pb-4">
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="../../assets/avatar/avatar.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                <span class="d-none d-sm-inline mx-1"><%= user.id %></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                <li><a class="dropdown-item" href="../logout">Sign out</a></li>
+            </ul>
+        </div>
     </div>
 </div>

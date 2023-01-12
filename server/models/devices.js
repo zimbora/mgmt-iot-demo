@@ -85,6 +85,26 @@ module.exports =  {
     });
   },
 
+  // list associated devices
+  listAssociated : (user_id,cb)=>{
+    db.getConnection((err,conn) => {
+      if(err)
+        cb(err,null)
+      else{
+        var query = `select uid,model,fw_version,app_version,status from ?? inner join permissions where permissions.clients_idclients = ? and permissions.devices_uid = devices.uid`;
+        var table = ["devices", user_id];
+        query = mysql.format(query,table);
+        conn.query(query,function(err,rows){
+          console.log(err)
+          console.log(rows)
+          db.close_db_connection(conn);
+          if(err) cb(err,null);
+          else cb(null,rows);
+        });
+      }
+    });
+  },
+
   // get info of device
   getInfo : (deviceID,cb)=>{
     db.getConnection((err,conn) => {

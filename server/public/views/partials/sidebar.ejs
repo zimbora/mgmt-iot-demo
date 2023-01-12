@@ -26,6 +26,7 @@
                     <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
                 </a>
             </li>
+           <% if(user.level >= 4){%>
             <li>
                 <a href="../users"
                 <% if(page == "Users"){%>
@@ -34,6 +35,8 @@
                 class="nav-link px-0 align-middle">
                     <i class="fs-4 bi-person-lines-fill"></i> <span class="ms-1 d-none d-sm-inline">Users</span></a>
             </li>
+            <% } %>
+            <% if(user.level >= 4){%>
             <li>
                 <a href="../clients"
                 <% if(page == "Clients"){%>
@@ -42,6 +45,7 @@
                 class="nav-link px-0 align-middle">
                     <i class="fs-4 bi-person-lines-fill"></i> <span class="ms-1 d-none d-sm-inline">Clients</span></a>
             </li>
+            <% } %>
             <li>
                 <a href="../devices"
                 <% if(page == "Devices"){%>
@@ -51,27 +55,16 @@
                     <i class="fs-4 bi-phone"></i> <span class="ms-1 d-none d-sm-inline">Devices</span>
                 </a>
             </li>
-            <!--
-            <li>
-                <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                    <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Bootstrap</span></a>
-                <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-                    <li class="w-100">
-                        <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1</a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2</a>
-                    </li>
-                </ul>
-            </li>
-            -->
-            <!--
-            <li>
-                <a href="#" class="nav-link px-0 align-middle">
-                    <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
-            </li>
-            -->
         </ul>
         <hr>
+        <div class="dropdown pb-4">
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="../assets/avatar/avatar.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                <span class="d-none d-sm-inline mx-1"><%= user.id %></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                <li><a class="dropdown-item" href="../logout">Sign out</a></li>
+            </ul>
+        </div>
     </div>
 </div>

@@ -229,7 +229,7 @@ var api = {
 
   },
   // add mqtt client
-  addClient : (client,user,cb)=>{
+  addClient : (client,user,password,cb)=>{
     fetch(Settings.api+"/clients", {
       method: 'POST',
       headers: {
@@ -237,7 +237,8 @@ var api = {
       },
       body: JSON.stringify({
         clientID: client,
-        user: user
+        user: user,
+        password: password
       })
     })
     .then(function (response) {

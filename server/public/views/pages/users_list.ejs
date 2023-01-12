@@ -25,7 +25,7 @@
             <div class="row">
               <div class="col-sm-8 mb-3 mb-sm-0">
                 <div class="content-header">
-                  <h5>Display MQTT Users</h5>
+                  <h5>MQTT Users</h5>
                 </div>
                 <div class="card">
                   <!--<h5 class="card-title">Special title treatment</h5>-->
@@ -44,16 +44,16 @@
               <div class="col-sm-4 mb-2 mb-sm-0">
                 <div class="card">
                   <div class="card-header">
-                    <p>Add new client</p>
+                    <p>Add new User</p>
                   </div>
                   <div class="card-body">
                     <div class="input-group mb-3">
                       <span class="input-group-text" >user</span>
-                      <input type="text" id="userID" class="form-control" placeholder="mqtt_userID" aria-label="Username" aria-describedby="basic-addon1">
+                      <input type="text" id="userID" class="form-control" placeholder="mqtt user" aria-label="Username" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group mb-3">
                       <span class="input-group-text" >password</span>
-                      <input type="text" id="passwordID" class="form-control" placeholder="mqtt_passwordID" aria-label="Password" aria-describedby="basic-addon1">
+                      <input type="text" id="passwordID" class="form-control" placeholder="mqtt user password" aria-label="Password" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group mb-3">
                       <label class="input-group-text" for="inputGroupSelect01">level</label>
@@ -90,7 +90,7 @@
         if(err) console.log("err:",err)
         else{
           res.forEach((item, i) => {
-            addRow(item.idusers,item.token,item.level);
+            addRow(item.idusers,item.password,item.level);
           });
         }
       });

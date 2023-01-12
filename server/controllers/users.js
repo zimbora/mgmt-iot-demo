@@ -66,48 +66,9 @@ module.exports = {
     });
   },
 
-  checkUserDeviceAccess,
+  getInfo : (req,res,next)=>{
+    console.log("get user info");
+    return next();
+  },
 
-}
-
-function isAdmin(user){
-
-  if(user.type == "admin")
-    return true;
-  else return false;
-}
-
-function checkAdminAccess(req,res,next){
-  if(req.user.user_type_type == "collector" && req.user.cloud == 1){
-    next();
-  }else{
-    User.checkAdminAccess(req.user.id,(err,rows)=>{
-      if(err) next(err);
-      else if(rows == null || rows.length == 0) res.json({"Error" : true, "Message" : "Not allowed", "Result" : null});
-      else if(rows.length == 1 && rows[0].type != "admin") res.json({"Error" : true, "Message" : "Not allowed", "Result" : null});
-      else next();
-    });
-  }
-}
-
-function checkUserOwnAccess(req, res, next) {
-  if(req.user.id == req.params.user_id || req.user.id == req.query.user_id || isAdmin(req.user))
-    next();
-  else
-    res.json({"Error" : true, "Message" : "Not allowed", "Result" : null});
-}
-
-function checkUserDeviceAccess(req, res, next) {
-
-  return next();
-  /*
-  User.checkUserMapAccess(req.user.id,req.map.id,(err,rows)=>{
-    if(err) next(err);
-    else if(rows == null || rows.length == 0) res.json({"Error" : true, "Message" : "Not allowed", "Result" : null});
-    else{
-      req.user.level = rows[0].level;
-      next();
-    }
-  });
-  */
 }

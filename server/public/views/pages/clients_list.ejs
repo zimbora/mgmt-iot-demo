@@ -4,6 +4,11 @@
 
   <%- include('../partials/head.ejs') %>
 
+  <style>
+    td {
+      max-width: 200px;
+    }
+  </style>
 </head>
 <body>
 
@@ -22,16 +27,17 @@
             <div class="row">
               <div class="col-sm-8 mb-3 mb-sm-0">
                 <div class="content-header">
-                  <h5>Display MQTT Clients</h5>
+                  <h5>MQTT Clients</h5>
                 </div>
-                <div class="card">
+                <div class="card" style="overflow: scroll;">
                   <!--<h5 class="card-title">Special title treatment</h5>-->
-                  <table id="clients" class="display" style="width:100%">
+                  <table id="clients" class="display" style="width:100%" overflow-x:scroll>
                     <thead>
                         <tr>
                             <th></th>
                             <th>client</th>
-                            <th>user</th>
+                            <th>password</th>
+                            <th>user type</th>
                             <th>registered</th>
                         </tr>
                     </thead>
@@ -46,7 +52,11 @@
                   <div class="card-body">
                     <div class="input-group mb-3">
                       <span class="input-group-text" >client</span>
-                      <input type="text" id="_clientID_" class="form-control" placeholder="mqtt_clientID" aria-label="Username" aria-describedby="basic-addon1">
+                      <input type="text" id="_clientID_" class="form-control" placeholder="mqtt client/platform client" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" >password</span>
+                      <input type="text" id="_passwordID_" class="form-control" placeholder="platform password" aria-label="Password" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group mb-3">
                       <label class="input-group-text" for="inputGroupSelect01">user</label>
@@ -85,19 +95,21 @@
         if(err) console.log("err:",err)
         else{
           res.forEach((item, i) => {
-            addRow(item.idclients,item.idusers,moment(item.timestamp).format('YY/MM/DD LT'));
+            addRow(item.idclients,item.token,item.api_token,item.users_idusers,moment(item.timestamp).format('YY/MM/DD LT'));
           });
         }
       });
     });
 
-    function addRow(client_id,user,registered){
+    function addRow(client_id,password,api_token,user,registered){
       t.row.add([`
         <button id="`+client_id+`" onclick="deleteClient('`+client_id+`');" type="button" class="delete btn btn-secondary btn-sm">
           <i class="fa-solid fa-user-xmark"></i>
         </button>`,
         `<a href="./client/`+client_id+`">`+client_id+`</a>
-        `,user,registered]).draw(true);
+        `,password,user,registered]).draw(true);
+
+        //password,api_token,user,registered]).draw(true);
     }
 
     function deleteClient(client_id){
@@ -122,7 +134,8 @@
     $("#submit").click(()=>{
       let client = $("#_clientID_").val();
       let user = $("#_userID_").val();
-      api.addClient(client,user,(err,res)=>{
+      let password = $("#_passwordID_").val();
+      api.addClient(client,user,password,(err,res)=>{
         if(err) console.log(err);
         else location.reload();
       });

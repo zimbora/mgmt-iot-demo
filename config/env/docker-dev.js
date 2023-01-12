@@ -1,4 +1,3 @@
-
 module.exports = {
   env: 'docker-dev',
   db: {
@@ -10,9 +9,9 @@ module.exports = {
   debug:{
     level: "trace"
   },
-  domain: "my.dev.inloc.cloud",
+  domain: "localhost",
   web_port: 24000,
-  public_path:  '/app/server/public',
+  public_path:  '../server/public',
   jwtSecret: 'my-api-secret',
   jwtDuration: '2 hours',
   token_mgmt: 'zxc',
