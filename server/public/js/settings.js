@@ -1,6 +1,4 @@
 var Settings = {
-  ws_domain : "wss://api.dev.inloc.cloud", //10.168.1.69",
-  ws_port : 8080,
   url : window.location.protocol+"//"+window.location.hostname+":"+window.location.port, //"http://10.168.1.69:4000",
   //url : window.location.protocol+"//"+window.location.hostname, //"http://10.168.1.69:4000",
   api : window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/api", //"http://10.168.1.69:4000/api"

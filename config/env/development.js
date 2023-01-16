@@ -2,8 +2,8 @@ module.exports = {
   env: 'development',
   db: {
     host:'localhost',
-    user:'root',
-    pwd:'lucatronica',
+    user:'user',
+    pwd:'user_pwd',
     name:'mqtt-aedes',
   },
   debug:{

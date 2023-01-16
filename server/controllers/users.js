@@ -67,7 +67,6 @@ module.exports = {
   },
 
   getInfo : (req,res,next)=>{
-    console.log("get user info");
     return next();
   },
 

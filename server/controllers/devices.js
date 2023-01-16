@@ -85,7 +85,6 @@ module.exports = {
 
   // get device alarms
   getAutorequests : (req, res, next)=>{
-    console.log("get ars of device:",req.params.device_id);
     device.getAutorequests(req.params.device_id,(err,rows)=>{
       if(!err) response.send(res,rows);
       else response.error(res,httpStatus.INTERNAL_SERVER_ERROR,err);
@@ -94,7 +93,6 @@ module.exports = {
 
   // get device alarms
   getAlarms : (req, res, next)=>{
-    console.log("get alarms of device:",req.params.device_id);
     device.getAlarms(req.params.device_id,(err,rows)=>{
       if(!err) response.send(res,rows);
       else response.error(res,httpStatus.INTERNAL_SERVER_ERROR,err);
@@ -103,7 +101,6 @@ module.exports = {
 
   // get device jscode
   getJSCode : (req, res, next)=>{
-    console.log("get jscode of device:",req.params.device_id);
     device.getJSCode(req.params.device_id,(err,rows)=>{
       if(!err) response.send(res,rows);
       else response.error(res,httpStatus.INTERNAL_SERVER_ERROR,err);

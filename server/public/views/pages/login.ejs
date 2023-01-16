@@ -1,19 +1,4 @@
-<!--
 
-=========================================================
-* Now UI Dashboard PRO - v1.5.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/now-ui-dashboard-pro
-* Copyright 2019 Creative Tim (http://www.creative-tim.com)
-
-* Designed by www.invisionapp.com Coded by www.creative-tim.com
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
--->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +6,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Now UI Dashboard PRO by Creative Tim
+    MQTT Device Manager
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 
@@ -30,103 +15,127 @@
 </head>
 
 <style type="text/css">
-  /*
-  #customBtn {
-    display: inline-block;
-    background: white;
-    color: #444;
-    width: 190px;
-    border-radius: 5px;
-    border: thin solid #888;
-    box-shadow: 1px 1px 1px grey;
-    white-space: nowrap;
-  }
-  #customBtn:hover {
-    cursor: pointer;
-  }
-  span.label {
-    font-family: serif;
-    font-weight: normal;
-  }
-  span.icon {
-    background: url('/assets/img/g-normal.png') transparent 5px 50% no-repeat;
-    display: inline-block;
-    vertical-align: middle;
-    width: 42px;
-    height: 42px;
-  }
-  span.buttonText {
-    display: inline-block;
-    vertical-align: middle;
-    padding-left: 42px;
-    padding-right: 42px;
-    font-size: 14px;
-    font-weight: bold;
-    /* Use the Roboto font that is loaded in the <head> */
-    font-family: 'Roboto', sans-serif;
-  }
-  */
+  body{ min-height: 100vh; margin:0; }
+
+  header{ min-height:50px; background:lightcyan; }
+  footer{ min-height:50px; background:PapayaWhip; }
+
+  /* The article fills all the space between header & footer */
+  body{ display:flex; flex-direction:column; }
+  article{ flex:1; }
+
 </style>
 
-<body class="login-page sidebar-mini ">
+<body>
 
-  <div class="wrapper wrapper-full-page ">
-    <div class="full-page login-page section-image" filter-color="black" data-image="../assets/img/MoWyJ4.jpg">
-      <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
-      <div class="content">
-        <div class="container">
-          <div class="col-md-4 ml-auto mr-auto">
-            <form class="form" method="" action="">
-              <div class="card card-login card-plain">
-                <div class="card-header ">
-                  <div class="typography-line">
-                    <h1 style="color:white">MQTT Device Manager</h1>
-                  </div>
-                  <div class="logo-container">
-                    <!--<img src="../../assets/img/now-logo.png" alt="">-->
-                  </div>
-                </div>
-                <div class="card-body ">
-                  <div class="input-group no-border form-control-lg">
-                    <span class="input-group-prepend">
-                      <div class="input-group-text">
-                        <i class="now-ui-icons users_circle-08"></i>
-                      </div>
-                    </span>
-                    <input id="user" type="text" class="form-control" placeholder="user...">
-                  </div>
-                  <div class="input-group no-border form-control-lg">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">
-                        <i class="now-ui-icons objects_key-25"></i>
-                      </div>
+  <article contentEditable>
+    <div class="py-5" >
+      <div class="row py-4 g-0 align-items-center">
+
+          <div class="d-flex mb-5 mb-lg-0 align-items-center justify-content-center">
+            <!--<div class="col-md-4 ml-auto mr-auto">-->
+              <form class="form" method="" action="">
+
+                <div class="card align-items-center shadow p-3 mb-5 bg-body rounded">
+
+                  <div class="card-body p-5 shadow-5 text-center">
+                  <!--<div class="card-header ">-->
+                    <div class="typography-line text-center">
+                      <h1 style="color:black">MQTT Device Manager</h1>
                     </div>
-                    <input id="password" class="form-control" placeholder="password.." type="password" required="true" />
-                  </div>
-                </div>
-                <div class="typography-line">
-                  <h7 id="login-msg" style="color:blue"></h7>
-                </div>
-                <div class="card-footer ">
-                  <a id="submit" class="btn btn-primary btn-round btn-lg btn-block mb-3">Log in</a>
+                    <div class="logo-container">
+                      <img src="./assets/img/avatar.png" alt="">
+                    </div>
+                  <!--</div>-->
+                  <!--<div class="card-body p-5 shadow-5 text-center">-->
+                    <div class="input-group no-border form-control-lg">
+                      <span class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="fa-regular fa-user"></i>
+                        </div>
+                      </span>
+                      <input id="user" type="text" class="form-control" placeholder="user...">
+                    </div>
+                    <div class="input-group no-border form-control-lg">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="fa-solid fa-key"></i>
+                        </div>
+                      </div>
+                      <input id="password" class="form-control" placeholder="password.." type="password" required="true" />
+                    </div>
+                  <!--</div>-->
+                    <div class="typography-line">
+                      <h7 id="login-msg" style="color:blue"></h7>
+                    </div>
+                  <!--<div class="card-footer">-->
+                    <div class="text-center py-4">
+                      <a id="submit" class="btn btn-primary btn-round btn-lg btn-block mb-3">Log in</a>
+                    </div>
+                  <!--</div>-->
+
                 </div>
 
-              </div>
-            </form>
+              </form>
+            <!--</div>-->
           </div>
-        </div>
+
+
       </div>
-      <footer class="footer">
-        <div class=" container-fluid ">
-          <div class="copyright" id="copyright">
-            &copy; <script>
-              document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-            </script>, All rights reserved to me
-          </div>
-        </div>
-      </footer>
     </div>
-  </div>
+
+  </article>
+
+  <footer class="contentEditable text-center text-white" style="background-color: #f1f1f1;">
+    <!-- Grid container -->
+    <div class="container pt-4">
+      <!-- Section: Social media -->
+      <section class="mb-4">
+
+        <!-- Instagram -->
+        <a
+        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        href="."
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-instagram"></i
+          ></a>
+
+          <!-- Linkedin -->
+          <a
+          class="btn btn-link btn-floating btn-lg text-dark m-1"
+          href="."
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-linkedin"></i
+            ></a>
+
+            <!-- Github -->
+            <a
+            class="btn btn-link btn-floating btn-lg text-dark m-1"
+            href="https://github.com/zimbora?tab=repositories"
+            role="button"
+            data-mdb-ripple-color="dark"
+            ><i class="fab fa-github"></i
+              ></a>
+            </section>
+            <!-- Section: Social media -->
+          </div>
+          <!-- Grid container -->
+
+          <!-- Copyright -->
+          <div class="text-center text-dark p-3" id="copyright" style="background-color: rgba(0, 0, 0, 0.2);">
+            <script>
+              document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+            </script>, All rights reserved to the owner
+          </div>
+          <!-- Copyright -->
+  </footer>
+
+
+  <script src="https://kit.fontawesome.com/d69c68b380.js" crossorigin="anonymous"></script>
+
+  <!--</div>-->
 
   <script src="./assets/js/jquery.min.js"></script>
 
@@ -154,5 +163,6 @@
 
 
 </body>
+
 
 </html>

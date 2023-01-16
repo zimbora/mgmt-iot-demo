@@ -1,7 +1,7 @@
 require("./logs/log")
 
 log.info("process.env.NODE_ENV",process.env.NODE_ENV)
-log.info("process.env.NODE_ENV",process.env.NODE_DEBUG)
+log.info("process.env.NODE_DEBUG",process.env.NODE_DEBUG)
 
 var db = require('./server/controllers/db');
 

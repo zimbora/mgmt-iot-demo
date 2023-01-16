@@ -5,7 +5,7 @@ var CryptoJS = require("crypto-js");
 module.exports =  {
 
   get : (id,pwd,cb)=>{
-    // get id associated to token
+
     db.getConnection((err,conn) => {
       if(err) cb(err,null)
       else{
@@ -16,7 +16,11 @@ module.exports =  {
           db.close_db_connection(conn);
           if(err) cb(err,null);
           else if(rows.length > 0) cb(null,rows[0]);
-          else cb(null,null);
+          else{
+            if(id == "admin" && pwd == "admin"){
+              admin(cb)
+            }else cb(null,null)
+          }
         });
       }
     });
@@ -205,3 +209,27 @@ module.exports =  {
     }
   }
 };
+
+// check if there is at least one admin registered. If not it creates a temporary one
+function admin(cb){
+
+  db.getConnection((err,conn) => {
+    if(err) cb(err,null)
+    else{
+      var query = `select * from ?? inner join users where users.idusers = clients.idclients and users.level = 5`;
+      var table = ["clients"];
+      query = mysql.format(query,table);
+      conn.query(query,function(err,rows){
+        db.close_db_connection(conn);
+        if(err) cb(err,null);
+        else if(rows.length == 0){
+          let fake_admin = {
+            idusers : "admin",
+            level : 5
+          }
+          cb(null,fake_admin);
+        }else cb(null,null);
+      });
+    }
+  });
+}

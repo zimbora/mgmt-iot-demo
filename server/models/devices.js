@@ -95,8 +95,6 @@ module.exports =  {
         var table = ["devices", user_id];
         query = mysql.format(query,table);
         conn.query(query,function(err,rows){
-          console.log(err)
-          console.log(rows)
           db.close_db_connection(conn);
           if(err) cb(err,null);
           else cb(null,rows);

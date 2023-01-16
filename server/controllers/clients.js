@@ -115,8 +115,6 @@ module.exports = {
   },
 
   checkDeviceAccess : (req, res, next)=>{
-    console.log("check device access for user")
-    console.log(req.user)
     Client.checkDeviceAccess(req.user.id,req.user.level,req.params.device_id,(err,access)=>{
       if(err) res.json({"Error" : true, "Message" : err, "Result" : null});
       else if(!access) res.json({"Error" : true, "Message" : "Not allowed", "Result" : null});
@@ -125,8 +123,6 @@ module.exports = {
   },
 
   checkAdminAccess : (req,res,next)=>{
-    console.log("check admin access");
-    console.log(req.user)
     if(req.user.level >= 4)
       next();
     else

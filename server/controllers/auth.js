@@ -33,7 +33,6 @@ function authenticate(req, res, next) {
     else if(result == null) res.json({message:"User and password doesn't match"});
     else{
       req.user = result;
-      console.log("user",req.user)
       next();
     }
   });

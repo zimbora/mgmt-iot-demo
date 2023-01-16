@@ -264,20 +264,27 @@
           document.querySelector('#app_version').value = res[0].app_version;
           project = res[0].project;
 
-          document.querySelector('#wifissid').value = res[0].fw_settings.wifi.ssid;
-          document.querySelector('#wifipassword').value = res[0].fw_settings.wifi.pwd;
+          if(res[0].hasOwnProperty("fw_settings") && res[0].fw_settings != null){
+            if(res[0].fw_settings.hasOwnProperty("wifi") && res[0].fw_settings.wifi != null){
+              document.querySelector('#wifissid').value = res[0].fw_settings.wifi.ssid;
+              document.querySelector('#wifipassword').value = res[0].fw_settings.wifi.pwd;
+            }
+            if(res[0].fw_settings.hasOwnProperty("mqtt") && res[0].fw_settings.mqtt != null){
+              document.querySelector('#mqtt_host').value = res[0].fw_settings.mqtt.host;
+              document.querySelector('#mqtt_port').value = res[0].fw_settings.mqtt.port;
+              document.querySelector('#mqtt_user').value = res[0].fw_settings.mqtt.user;
+              document.querySelector('#mqtt_pwd').value = res[0].fw_settings.mqtt.pass;
+            }
+          }
 
-          document.querySelector('#mqtt_host').value = res[0].fw_settings.mqtt.host;
-          document.querySelector('#mqtt_port').value = res[0].fw_settings.mqtt.port;
-          document.querySelector('#mqtt_user').value = res[0].fw_settings.mqtt.user;
-          document.querySelector('#mqtt_pwd').value = res[0].fw_settings.mqtt.pass;
-
-          // connect the client
-          client.connect({
-            userName:Settings.mqtt.user,
-            password:Settings.mqtt.password,
-            onSuccess:onConnect
-          });
+          api.getMqttCredentials((err,res)=>{
+            // connect the client
+            client.connect({
+              userName:Settings.mqtt.user,
+              password:Settings.mqtt.password,
+              onSuccess:onConnect
+            });
+          })
         }
       })
     });

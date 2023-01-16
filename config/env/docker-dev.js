@@ -1,9 +1,9 @@
 module.exports = {
   env: 'docker-dev',
   db: {
-    host:'localhost',
-    user:'root',
-    pwd:'lucatronica',
+    host:'host.docker.internal',
+    user:'user',
+    pwd:'user_pwd',
     name:'mqtt-aedes',
   },
   debug:{
@@ -14,5 +14,4 @@ module.exports = {
   public_path:  '../server/public',
   jwtSecret: 'my-api-secret',
   jwtDuration: '2 hours',
-  token_mgmt: 'zxc',
 };
