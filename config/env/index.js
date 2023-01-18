@@ -1,5 +1,5 @@
 const env = process.env.NODE_ENV || 'development';
 
-const config = require(`./${env}`);
+global.config = require(`./${env}`);
 
-module.exports = config;
+//module.exports = config;

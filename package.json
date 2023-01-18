@@ -24,6 +24,7 @@
     "http-status-codes": "^2.2.0",
     "joi": "^17.7.0",
     "markdown": "^0.5.0",
+    "mgmt-iot-web": "^1.0.0",
     "mysql2": "^2.3.3",
     "path": "^0.12.7",
     "serve-index": "^1.9.1"

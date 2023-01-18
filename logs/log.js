@@ -1,6 +1,4 @@
 
-var config = require('../config/env');
-
 global.log = require('console-log-level')({
   prefix: function (level) {
     return "["+Date.now()+"]"

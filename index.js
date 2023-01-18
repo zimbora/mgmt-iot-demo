@@ -1,13 +1,16 @@
+require("./middleware")
+require('./config/env');
 require("./logs/log")
+
+var iot;
+
+if(config.env == "development")
+  iot = require('../modules/mgmt-iot-web');
+else
+  iot = require('mgmt-iot-web');
 
 log.info("process.env.NODE_ENV",process.env.NODE_ENV)
 log.info("process.env.NODE_DEBUG",process.env.NODE_DEBUG)
 
-var db = require('./server/controllers/db');
-
-db.connect((err) => {
-  if(!err) log.info("connected to DB");
-  else log.error("error connecting to DB");
-});
-
-var rest_web = require("./web");
+iot.init(config);
+global.iot_path = iot.path()
