@@ -1,18 +1,10 @@
 # mgmt-iot-demo
 
-This project is a template to use mgmt-iot-web npm module [link](module)
+This project is a template to use mgmt-iot-web npm module [link](https://www.npmjs.com/package/mgmt-iot-web)
 Start your project using this example.
+A MySQL8.0 must be running. Check the previous link to load the db schema into it.
 
-In order to use this dashboard you need at least one device running a dedicated firmware [link](firmware)
-and a dedicated mqtt broker compatible with this project [link](mqtt broker)
-
-## MQTT Broker
-
-Update it later
-
-## ESP32 firmware
-
-Update it later
+In order to use this dashboard you need at least one device running a dedicated firmware [link](https://github.com/zimbora/esp32-freeRTOS2) and a dedicated mqtt broker compatible with this project [link](https://github.com/zimbora/mqtt-broker-auth)
 
 ## Credentials
 
