@@ -9,6 +9,6 @@ module.exports = {
   debug:{
     level: "trace"
   },
-  web_port: 24000,
+  web_port: 80,
   public_path: '../server/public',
 };
